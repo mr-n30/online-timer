@@ -3,7 +3,3 @@ Online Timer project created for [freeCodeCamp](https://www.freecodecamp.org/lea
 
 # Demo
 https://mr-n30.github.io/online-timer
-
-# TODO
-- Fix increment appending number instead of adding
-- Fix a other UI bugs if any

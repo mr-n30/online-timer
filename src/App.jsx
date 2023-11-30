@@ -62,46 +62,48 @@ export default function App() {
 
   // Handle <INPUT> elements
   const handleInput = (e, session) => {
-    if (e.target.value <= 0 || e.target.value >= 60) {
+    if (parseInt(e.target.value) <= 0 || parseInt(e.target.value) >= 60) {
       return
     }
 
     if (session) {
-      setSessionLength(e.target.value);
+      setSessionLength(parseInt(e.target.value));
       setTimeLeft(parseInt(e.target.value) * MINMIL);
       setStop(true);
       return
     }
 
     // Handle break length
-    setBreakLength(e.target.value);
+    setBreakLength(parseInt(e.target.value));
     setStop(true);
     return
   };
 
   // Handle <BUTON> click
   const handleBreakBtnClick = (increment) => {
+    setStop(true);
+
     if (increment && parseInt(breakLength) < 59) {
       setBreakLength(parseInt(breakLength) + 1);
     } else if (!increment && parseInt(breakLength) > 1) {
       setBreakLength(parseInt(breakLength) - 1);
     }
 
-    setStop(true);
     return
-    
   }
 
   const handleSessionBtnClick = (increment) => {
+    setStop(true);
+
     if (increment && parseInt(sessionLength) < 59) {
-      setSessionLength(sessionLength + 1);
+      setSessionLength(parseInt(sessionLength) + 1);
       setTimeLeft(parseInt(sessionLength + 1) * MINMIL);
+      console.log(timeLeft, sessionLength)
     } else if (!increment && parseInt(sessionLength) > 1) {
-      setSessionLength(sessionLength - 1);
+      setSessionLength(parseInt(sessionLength) - 1);
       setTimeLeft(parseInt(sessionLength - 1) * MINMIL);
     }
 
-    setStop(true);
     return
   }
 
@@ -202,7 +204,7 @@ export default function App() {
       </div>
 
       <footer>
-	<p className="text-white text-center">Created by <a href="https://github.com/mr-n30">mr-n30</a> on GitHub</p>
+	<p className="text-white text-center">Created by <a href="https://github.com/mr-n30" rel="noreferrer" target="_blank">mr-n30</a>. Source code on <a href="https://github.com/mr-n30/online-timer" rel="noreferrer" target="_blank">GitHub</a></p>
       </footer>
       {/* Beep Audio when session/break are finished */}
       <audio id="beep" src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"></audio>
